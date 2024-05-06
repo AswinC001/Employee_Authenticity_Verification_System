@@ -9,12 +9,21 @@ import CompanyFunction from "./components/CompanyFunction";
 import Login from "./components/login/login";
 import Signup from "./components/login/signup";
 import "./components/login/login.css";
+
 import UserLogin from "./components/login/user-login";
+import Company_signup from "./components/login/company_signup"
+import Institution_signup from "./components/login/institution_signup"
 import InstitutionLogin from "./components/login/institution-login";
 import CompanyLogin from "./components/login/company-login";
+
 import CompanyDash from "./components/login/companydash";
 import InstiDash from "./components/login/instidash";
 import UserDash from "./components/login/userdash";
+
+import CompanyVerify from "./components/login/companyverify";
+import CompanySetTenure from "./components/login/companysettenure";
+import CompanyViewTenure from "./components/login/companyviewtenure";
+
 import Signup1 from "./components/login/signup1";
 
 
