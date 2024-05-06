@@ -16,6 +16,9 @@ import CompanyDash from "./components/login/companydash";
 import InstiDash from "./components/login/instidash";
 import UserDash from "./components/login/userdash";
 import Signup1 from "./components/login/signup1";
+import CompanyVerify from "./components/login/companyverify";
+import CompanySetTenure from "./components/login/companysettenure";
+import CompanyViewTenure from "./components/login/companyviewtenure";
 
 const App = () => {
   return (
@@ -28,6 +31,9 @@ const App = () => {
         <Route path="/company-login" element={<CompanyLogin />} />
         <Route path="/institution-login" element={<InstitutionLogin />} />
         <Route path="/companydash/:userEmail" element={<CompanyDash />} />
+        <Route path="/companydash/:userEmail/verify" element={<CompanyVerify />} />
+        <Route path="/companydash/:userEmail/settenure" element={<CompanySetTenure />} />
+        <Route path="/companydash/:userEmail/viewtenure" element={<CompanyViewTenure />} />
         <Route path="/userdash/:userEmail/:userId" element={<UserDash />} />
         <Route path="/instidash" element={<InstiDash />} />
       </Routes>
