@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const User = require("./model/user");
+const Company=require("./model/company");
+const Institution=require("./model/institution");
 const cors = require("cors");
 
 const app = express();
@@ -70,27 +72,28 @@ app.post("/company_signup", async (req, res) => {
     // Iterate over uniqueIds array
     for (const uniqueId of uniqueIds) {
       // Check if a user with this uniqueId already exists
-      const existingUser = await User.findOne({ uniqueId: uniqueId });
+      const existingUser = await Company.findOne({ uniqueId: uniqueId });
       if (existingUser) {
         // If user exists, throw an error
         continue;
       }
 
       // If user does not exist, create and save the user
-      const newUser = new User({ name, age, email, userType, institution, password, uniqueId });
+      const newUser = new Company({ name, email, userType, password, uniqueId });
       console.log(newUser);
       await newUser.save();
       break;
     }
-    res.status(201).send({ message: "Users created successfully" });
+    res.status(201).send({ message: "Company created successfully" });
   } catch (error) {
     // Handle errors
     res.status(400).send({ error: error.message });
   }
 });
+
 app.post("/institution_signup", async (req, res) => {
   try {
-    const { name,  email, aicteid ,userType,  password } = req.body;
+    const { name, aicteid, email, userType,  password } = req.body;
     const uniqueIds = [
       "0x84b6fb81d3ab6D69292346e7D4CA8607f67506C7",
       "0x0Cbf871c2d48ce0f0F92589AA09Ece2E8Defb080",
@@ -109,19 +112,19 @@ app.post("/institution_signup", async (req, res) => {
     // Iterate over uniqueIds array
     for (const uniqueId of uniqueIds) {
       // Check if a user with this uniqueId already exists
-      const existingUser = await User.findOne({ uniqueId: uniqueId });
+      const existingUser = await Institution.findOne({ uniqueId: uniqueId });
       if (existingUser) {
         // If user exists, throw an error
         continue;
       }
 
       // If user does not exist, create and save the user
-      const newUser = new User({ name, email,aicteid, userType, institution, password, uniqueId });
+      const newUser = new Institution({ name, email,aicteid, password, uniqueId });
       console.log(newUser);
       await newUser.save();
       break;
     }
-    res.status(201).send({ message: "Users created successfully" });
+    res.status(201).send({ message: "Institution created successfully" });
   } catch (error) {
     // Handle errors
     res.status(400).send({ error: error.message });

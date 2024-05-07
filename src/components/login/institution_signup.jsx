@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+
 function Institution_signup() {
   const [name, setName] = useState('');
   const [aicteid, setId] = useState('');
@@ -8,6 +9,16 @@ function Institution_signup() {
   const [password, setPassword] = useState('');
   const [uniqueId, setUniqueId] = useState('');
   const [institution, setInstitution] = useState('');
+
+  const instituteNames = [
+    'College of Engineering Trivandrum',
+    'National Institute of Technology Calicut',
+    'Government Engineering College Thrissur',
+    'Model Engineering College, Thrikkakkara',
+    'Mar Athanasius College, Kothamangalam',
+    'Indian Institute of Technology, Kharagpur',
+    'TKM College of Engineering'
+  ];
 
   const handleGenerateUniqueId = () => {
     // Concatenate username and password to create a unique string
@@ -19,15 +30,16 @@ function Institution_signup() {
     // Set the generated unique ID to state
     setUniqueId(generatedUniqueId);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3001/signup', {
+      const response = await fetch('http://localhost:3001/institution_signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name,  email,aicteid, userType,  password }),
+        body: JSON.stringify({ name,  email, aicteid, userType,  password }),
       });
       const data = await response.json();
       if (response.ok) {
@@ -44,17 +56,21 @@ function Institution_signup() {
     <form onSubmit={handleSubmit} className='form-container'>
       <h1>Sign Up</h1>
       <label>
-        {/* Name: */}
-        <input type="text" value={name} placeholder="Enter institution name" onChange={(e) => setName(e.target.value)} />
+        Institution Name:
+        <select value={name} onChange={(e) => setName(e.target.value)}>
+          <option value="">Select Institution</option>
+          {instituteNames.map((institute, index) => (
+            <option key={index} value={institute}>{institute}</option>
+          ))}
+        </select>
       </label>
       
       <label>
-        {/* Email: */}
         <input type="email" value={email} placeholder="Enter institution email" onChange={(e) => setEmail(e.target.value)} />
       </label>
       <label>
-        {/* Email: */}
-        <input type="aicteid" value={aicteid} placeholder="Enter AICTE ID" onChange={(e) => setId(e.target.value)} />
+        AICTE ID:
+        <input type="text" value={aicteid} placeholder="Enter AICTE ID" onChange={(e) => setId(e.target.value)} />
       </label>
       
       <label>
