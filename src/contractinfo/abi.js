@@ -76,6 +76,12 @@ export const ABI =[
 				"type": "address"
 			},
 			{
+				"indexed": true,
+				"internalType": "string",
+				"name": "companyName",
+				"type": "string"
+			},
+			{
 				"indexed": false,
 				"internalType": "uint256",
 				"name": "startDate",
@@ -90,6 +96,19 @@ export const ABI =[
 		],
 		"name": "EmployeeTenureSet",
 		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "removeEmployeeTenure",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"inputs": [
@@ -122,6 +141,11 @@ export const ABI =[
 				"type": "address"
 			},
 			{
+				"internalType": "string",
+				"name": "_companyName",
+				"type": "string"
+			},
+			{
 				"internalType": "uint256",
 				"name": "_startDate",
 				"type": "uint256"
@@ -148,6 +172,11 @@ export const ABI =[
 		"name": "employeeTenures",
 		"outputs": [
 			{
+				"internalType": "string",
+				"name": "companyName",
+				"type": "string"
+			},
+			{
 				"internalType": "uint256",
 				"name": "startDate",
 				"type": "uint256"
@@ -171,6 +200,11 @@ export const ABI =[
 		],
 		"name": "getEmployeeTenure",
 		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
 			{
 				"internalType": "uint256",
 				"name": "",

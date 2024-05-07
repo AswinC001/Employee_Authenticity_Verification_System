@@ -1,53 +1,24 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import DownloadFile from '../DownloadFile';
-import './userDash.css'; // Import the CSS file for styling
+import React from 'react';
+import { useNavigate,useParams } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import './userDash.css';
+
 
 function UserDash() {
-  const [documents, setDocuments] = useState([]);
-  const [loading, setLoading] = useState(true); // State variable to track loading state
-  const { userEmail,userId } = useParams();
-
-  const handleViewDocuments = async () => {
-    setLoading(true); // Set loading state to true before fetching documents
-    // Fetch documents from backend
-    
-    try {
-      const response = await fetch(`http://localhost:3001/document/${userEmail}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          // Add any other headers if required, like authorization token
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch documents');
-      }
-
-      const data = await response.json();
-      setDocuments(data.documents); // Assuming the response contains an array of document hashes
-    } catch (error) {
-      console.error('Error fetching documents:', error.message);
-      // Handle error, show error message, etc.
-    } finally {
-      setLoading(false); // Set loading state to false after fetching documents
-    }
-  };
-
+  const navigate = useNavigate(); // Initialize the navigate function
+  const {userEmail}=useParams();
+  const {userId}=useParams();
   return (
-    <div className="user-dash">
-      <h2 className="user-id">User ID: {userId}</h2>
-      {loading ? ( // Render "View Documents" button only when not loading
-        <button onClick={handleViewDocuments}>View Documents</button>
-      ) : null}
-      <ul>
-        {documents.map((document, index) => (
-          <DownloadFile key={index} hashValue={document} />
-        ))}
+    <div className='user-dash'>
+      <h1>User Dashboard</h1>
+      <p className='user-dash-id'>ID:{userId}</p>
+      <ul className='userlinks'>
+        {/* Use onClick to trigger navigation */}
+        <li><a className='dashbutton' onClick={() => navigate(`/userdash/${userEmail}/${userId}/userviewdoc`)}>View Documents</a><br/></li>
+        <li><a className='dashbutton' onClick={() => navigate(`/userdash/${userEmail}/${userId}/userviewtenure`)}>View Tenure</a><br/></li>
       </ul>
     </div>
   );
-}
+};
+
 
 export default UserDash;

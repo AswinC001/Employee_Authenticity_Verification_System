@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Web3 from "web3";
+import { useParams } from 'react-router-dom';
 import { Address } from "../../contractinfo/address";
 import { ABI } from "../../contractinfo/abi";
 
-function CompanyViewTenure() {
+function UserViewTenure() {
   const [contract, setContract] = useState(null);
   const [connectionStatus, setConnectionStatus] = useState({
     metamask: "NOT CONNECTED to Metamask",
@@ -12,6 +13,9 @@ function CompanyViewTenure() {
   const [viewCompany, setViewCompany] = useState("");
   const [viewStartDate, setViewStartDate] = useState("");
   const [viewEndDate, setViewEndDate] = useState("");
+  
+  const {userId } = useParams();
+
   useEffect(() => {
     connectContract();
   }, []); // Empty array as the dependency to run this effect only once
@@ -41,9 +45,8 @@ function CompanyViewTenure() {
 
   const viewTenure = async () => {
     try {
-      const userHash = document.getElementById("userhash").value ;
       const employeeTenure = await contract.methods
-        .getEmployeeTenure(userHash)
+        .getEmployeeTenure(userId)
         .call();
       setViewCompany(`Company : ${employeeTenure[0]}`);
       setViewStartDate(`Start Date : ${employeeTenure[1]}`);
@@ -60,17 +63,15 @@ function CompanyViewTenure() {
   };
 
   return (
-    <div className="company-view-tenure">
-      <h1>View Employee Tenure</h1>
+    <div className="user-dash">
+      <h1>View My Tenure</h1>
       <p id="contractArea">{connectionStatus.contract}</p>
+  
       <br />
-      <input type="text" id="userhash" required placeholder="Enter User hash" />
-      <br />
-      <br />
-      <button onClick={viewTenure}>VIEW TENURE</button>
+      <button onClick={viewTenure}>MY TENURE</button>
       <p id="viewTenureArea">{viewCompany} <br />{viewStartDate} <br />{viewEndDate}</p>
     </div>
   );
 };
 
-export default CompanyViewTenure;
+export default UserViewTenure;

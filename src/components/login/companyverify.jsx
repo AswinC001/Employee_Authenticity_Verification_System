@@ -13,9 +13,7 @@ function CompanyVerify() {
     contract: "NOT CONNECTED to Smart Contract",
   });
   const [verifyResult, setVerifyResult] = useState("");
-  useEffect(() => {
-    connectContract();
-  });
+
 
 
 
@@ -72,7 +70,7 @@ function CompanyVerify() {
       {/* <button onClick={connectMetamask}>CONNECT TO METAMASK</button>
             <p id="accountArea">Connection Status: {connectionStatus.metamask}</p> */}
       <h1>Verification</h1>
-      {/* <button onClick={connectContract}>CONNECT TO CONTRACT</button> */}
+      <button onClick={connectContract}>CONNECT TO CONTRACT</button>
       <p id="contractArea">{connectionStatus.contract}</p>
       <br />
       <br />
@@ -86,9 +84,9 @@ function CompanyVerify() {
       <br />
       {/* <div className="labels">DOCUMENT HASH:</div> */}
       <input type="text" id="verifydochash" required placeholder='Enter Document hash'/> <br />
-      <p id="verifyArea">{verifyResult}</p>
       <br />
-      <button onClick={verifyDoc}>VERIFY DOCUMENT</button> <br />
+      <button onClick={verifyDoc}>VERIFY DOCUMENT</button> 
+      <p id="verifyArea">{verifyResult}</p>
     </div>
   );
 };
