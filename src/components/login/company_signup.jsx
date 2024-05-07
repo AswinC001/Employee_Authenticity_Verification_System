@@ -45,12 +45,12 @@ function Company_signup() {
       <h1>Sign Up</h1>
       <label>
         {/* Name: */}
-        <input type="text" value={name} placeholder="Enter company name" onChange={(e) => setName(e.target.value)} />
+        <input type="text" value={name} placeholder="Enter company name" required onChange={(e) => setName(e.target.value)} />
       </label>
       
       <label>
         {/* Email: */}
-        <input type="email" value={email} placeholder="Enter company email" onChange={(e) => setEmail(e.target.value)} />
+        <input type="email" value={email} placeholder="Enter company email" required onChange={(e) => setEmail(e.target.value)} />
       </label>
       
       <label>
@@ -64,7 +64,7 @@ function Company_signup() {
       </label>
       <label>
         Password:
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input type="password" value={password} required onChange={(e) => setPassword(e.target.value)} />
       </label>
       <button type="submit" >Register</button>
       

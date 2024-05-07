@@ -66,11 +66,11 @@ function Institution_signup() {
       </label>
       
       <label>
-        <input type="email" value={email} placeholder="Enter institution email" onChange={(e) => setEmail(e.target.value)} />
+        <input type="email" value={email} placeholder="Enter institution email" required onChange={(e) => setEmail(e.target.value)} />
       </label>
       <label>
         AICTE ID:
-        <input type="text" value={aicteid} placeholder="Enter AICTE ID" onChange={(e) => setId(e.target.value)} />
+        <input type="text" value={aicteid} placeholder="Enter AICTE ID" required onChange={(e) => setId(e.target.value)} />
       </label>
       
       <label>

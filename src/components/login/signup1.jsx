@@ -46,19 +46,19 @@ function Signup1() {
       <h1>Sign Up</h1>
       <label>
         {/* Name: */}
-        <input type="text" value={name} placeholder="Enter your name" onChange={(e) => setName(e.target.value)} />
+        <input type="text" value={name} placeholder="Enter your name" required onChange={(e) => setName(e.target.value)} />
       </label>
       <label>
         {/* Age: */}
-        <input type="number" value={age} placeholder="Enter your age"  onChange={(e) => setAge(e.target.value)} />
+        <input type="number" value={age} placeholder="Enter your age" required onChange={(e) => setAge(e.target.value)} />
       </label>
       <label>
         {/* Gender: */}
-        <input type="text" value={gender} placeholder="Enter your gender"  onChange={(e) => setGender(e.target.value)} />
+        <input type="text" value={gender} placeholder="Enter your gender" required  onChange={(e) => setGender(e.target.value)} />
       </label>
       <label>
         {/* Email: */}
-        <input type="email" value={email} placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
+        <input type="email" value={email} placeholder="Enter your email"  required onChange={(e) => setEmail(e.target.value)} />
       </label>
       <label>
         {/* Institution: */}
