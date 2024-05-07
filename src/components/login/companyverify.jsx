@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-// import './companydash.css';
+import './companydash.css';
 import { v4 as uuidv4 } from 'uuid';
 import Web3 from "web3";
 import { Address } from "../../contractinfo/address";
