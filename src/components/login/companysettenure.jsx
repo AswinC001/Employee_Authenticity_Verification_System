@@ -1,9 +1,11 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Import axios for making HTTP requests
 // import './companydash.css';
 import { v4 as uuidv4 } from 'uuid';
 import Web3 from "web3";
 import { Address } from "../../contractinfo/address";
 import { ABI } from "../../contractinfo/abi";
+import { useParams } from 'react-router-dom';
 
 function CompanySetTenure() {
   const [account, setAccount] = useState("");
@@ -14,7 +16,34 @@ function CompanySetTenure() {
   });
   const [verifyResult, setVerifyResult] = useState("");
   const [tenureStatus,setTenureStatus]=useState("");
- 
+  const [companyName, setCompanyName] = useState(""); // State to store company name
+  const {userEmail}=useParams();
+  useEffect(() => {
+    // Function to fetch company name when the component mounts
+    const fetchCompanyName = async () => {
+      try {   
+        const response = await fetch('http://localhost:3001/company', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({email: userEmail}),
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setCompanyName(data.name);
+        } else {
+          // Handle error
+        }
+      } catch (error) {
+        // Handle network error
+      }
+    };
+
+    // Call the fetch function when component mounts
+    fetchCompanyName();
+  }, []); // Empty dependency array to run the effect only once when the component mounts
+
   const connectMetamask = async () => {
     if (window.ethereum !== "undefined") {
       const accounts = await window.ethereum.request({
@@ -27,6 +56,7 @@ function CompanySetTenure() {
       });
     }
   };
+
   const connectContract = async () => {
     //ABI and address provided externally
     window.web3 = await new Web3(window.ethereum);
@@ -51,27 +81,19 @@ function CompanySetTenure() {
 
   return (
     <div className="company-set-tenure">
-      
-      <h1>Set Employee Tenure</h1>
+      <h1>Set Employee Tenure for {companyName}</h1> {/* Display company name */}
       <button onClick={connectContract}>CONNECT TO CONTRACT</button>
       <p id="contractArea">{connectionStatus.contract}</p>
-            <button onClick={connectMetamask}>CONNECT TO METAMASK</button>
+      <button onClick={connectMetamask}>CONNECT TO METAMASK</button>
       <p id="accountArea">Account:<br />{connectionStatus.metamask}</p>
       
-      
       <br />
       <br />
-      {/* <div className="labels">USER HASH:</div><input type="text" id="adduserhash" /><br />
-            <div className="labels">DOCUMENT HASH:</div><input type="text" id="adddochash" /><br />
-            <button onClick={addDoc}>ADD DOCUMENT</button> <br /> */}
+      <input type="text" id="userhash" className="tenuretextbox" placeholder='Enter User ID' />
       <br />
+      <input type="text" id="tenurestart" className="tenuretextbox"  placeholder='Enter Start Date'/>
       <br />
-      {/* <div className="labels">USER HASH:</div> */}
-      <input type="text" id="userhash" class="tenuretextbox" placeholder='Enter User ID' />
-      <br />
-      <input type="text" id="tenurestart" class="tenuretextbox"  placeholder='Enter Start Date'/>
-       <br />
-      <input type="text" id="tenureend" class="tenuretextbox"  placeholder='Enter End Date'/> <br />
+      <input type="text" id="tenureend" className="tenuretextbox"  placeholder='Enter End Date'/> <br />
       <br />
       <button onClick={setTenure}>SET</button> <br />
       <p id="setTenureArea">{tenureStatus}</p>
