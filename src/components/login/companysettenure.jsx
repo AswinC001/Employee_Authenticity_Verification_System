@@ -74,7 +74,7 @@ function CompanySetTenure() {
     const tenurestart = document.getElementById("tenurestart").value;
     const tenureend = document.getElementById("tenureend").value;
     await contract.methods
-      .setEmployeeTenure(userhash,tenurestart,tenureend)
+      .setEmployeeTenure(userhash,companyName,tenurestart,tenureend)
       .send({ from: account });
     setTenureStatus("Tenure Updated!")
   };

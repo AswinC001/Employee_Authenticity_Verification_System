@@ -2,10 +2,6 @@
 
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-// import { BrowserRouter } from "react-router-dom";
-import UserFunction from "./components/UserFunction";
-import InstitutionFunction from "./components/InstitutionFunction";
-import CompanyFunction from "./components/CompanyFunction";
 import Login from "./components/login/login";
 import Signup from "./components/login/signup";
 import "./components/login/login.css";
@@ -23,9 +19,12 @@ import UserDash from "./components/login/userdash";
 import CompanyVerify from "./components/login/companyverify";
 import CompanySetTenure from "./components/login/companysettenure";
 import CompanyViewTenure from "./components/login/companyviewtenure";
+import CompanyRemoveTenure from "./components/login/companyremovetenure";
+
+import UserViewDoc from "./components/login/userviewdoc";
+import UserViewTenure from "./components/login/userviewtenure";
 
 import Signup1 from "./components/login/signup1";
-
 
 const App = () => {
   return (
@@ -43,6 +42,9 @@ const App = () => {
         <Route path="/companydash/:userEmail/verify" element={<CompanyVerify />} />
         <Route path="/companydash/:userEmail/settenure" element={<CompanySetTenure />} />
         <Route path="/companydash/:userEmail/viewtenure" element={<CompanyViewTenure />} />
+        <Route path="/companydash/:userEmail/removetenure" element={<CompanyRemoveTenure />} />
+        <Route path="/userdash/:userEmail/:userId/userviewtenure" element={<UserViewTenure />} />
+        <Route path="/userdash/:userEmail/:userId/userviewdoc" element={<UserViewDoc />} />
         <Route path="/userdash/:userEmail/:userId" element={<UserDash />} />
         <Route path="/instidash" element={<InstiDash />} />
       </Routes>
