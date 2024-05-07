@@ -191,6 +191,16 @@ app.put("/documents/:userId", async (req, res) => {
   }
 });
 
+app.post("/company", async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+  console.log(user);
+  if (user) {
+    res.status(200).send({ name: user.name });
+  } else {
+    res.status(401).send({ message: "Invalid email" });
+  }
+});
 
 app.listen(3001, () => {
   console.log("Server started on port 3001");
