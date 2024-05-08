@@ -52,7 +52,7 @@ function UserViewTenure() {
       setViewStartDate(`Start Date : ${employeeTenure[1]}`);
       setViewEndDate(`End Date : ${employeeTenure[2]}`);
       if (viewCompany=="") {
-        setViewCompany(`No information`);
+        setViewCompany(`_`);
         setViewStartDate(``);
       setViewEndDate(``);
       }
