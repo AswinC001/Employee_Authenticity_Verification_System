@@ -1,13 +1,16 @@
 .insti-dash-container {
-    max-width: 400px;
+    max-width: 450px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
   }
+  #insti-dashboard{
+    height:500px;
+  }
   
-  .input-field {
-    width: 100%;
+  .insti-input-field {
+    width: 450px;
     margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ccc;
