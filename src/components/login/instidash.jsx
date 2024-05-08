@@ -69,6 +69,7 @@ const InstiDash = () => {
             await axios.put(`http://localhost:3001/documents/${userId}`, { docHash: hashValue.IpfsHash });
 
             console.log('Document hash updated successfully for user:', userId);
+            document.getElementById('doc-hash-output').value = hashValue.IpfsHash;
         } catch (error) {
             console.error('Error updating document hash:', error.message);
             setErrorMessage(error.message);
@@ -109,6 +110,7 @@ const InstiDash = () => {
         await contract.methods
           .addDocument(userhash, dochash)
           .send({ from: account });
+        
       };
 
     return (
@@ -119,8 +121,9 @@ const InstiDash = () => {
       <p id="accountArea">Account:<br />{connectionStatus.metamask}</p>
       <br />
       <br />
-            <input className="input-field" type="text" value={userId} onChange={handleUserIdChange} />
+            <input className="insti-input-field" type="text" value={userId} onChange={handleUserIdChange} />
             <input className="file-input" type="file" onChange={fileUpload} />
+            <input className="insti-input-field" id="doc-hash-output" type="text" placeholder='Document Hash'  readOnly />
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <button onClick={addDoc}>ADD DOCUMENT</button> <br />
         </div>
