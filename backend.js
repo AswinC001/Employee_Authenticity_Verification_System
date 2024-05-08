@@ -12,7 +12,7 @@ mongoose.connect(
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 app.use(express.json());
-app.post("/signup1", async (req, res) => {
+app.post("/signup", async (req, res) => {
   try {
     const { name, age, gender,email, userType, institution, password } = req.body;
     const uniqueIds = [
@@ -143,6 +143,28 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.post("/institution_login", async (req, res) => {
+  const { email, password } = req.body;
+  const user = await Institution.findOne({ email, password });
+  console.log(user);
+  if (user) {
+    res.status(200).send({ message: "Logged in successfully", user });
+  } else {
+    res.status(401).send({ message: "Invalid email or password" });
+  }
+});
+
+app.post("/company_login", async (req, res) => {
+  const { email, password } = req.body;
+  const user = await Company.findOne({ email, password });
+  console.log(user);
+  if (user) {
+    res.status(200).send({ message: "Logged in successfully", user });
+  } else {
+    res.status(401).send({ message: "Invalid email or password" });
+  }
+});
+
 app.get("/document/:email", async (req, res) => {
   const userEmail = req.params.email;
   console.log(userEmail)
@@ -193,7 +215,7 @@ app.put("/documents/:userId", async (req, res) => {
 
 app.post("/company", async (req, res) => {
   const { email } = req.body;
-  const user = await User.findOne({ email });
+  const user = await Company.findOne({ email });
   console.log(user);
   if (user) {
     res.status(200).send({ name: user.name });

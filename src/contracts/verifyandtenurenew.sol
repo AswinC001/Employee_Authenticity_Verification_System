@@ -9,15 +9,13 @@ contract DocumentVerification {
         bool isValid;
     }
     struct Employee {
-        string companyName;
+        string companyName; // Add company name
         uint256 startDate;
         uint256 endDate;
     }
 
-    // Mapping from address (user) to company name to Employee
-    mapping(address => mapping(string => Employee)) public employeeTenures;
-
     mapping(address => Document[]) public userDocuments;
+    mapping(address => Employee) public employeeTenures;
 
     event DocumentAdded(address indexed user, string indexed documentHash);
     event DocumentVerified(
@@ -30,7 +28,7 @@ contract DocumentVerification {
         string indexed companyName,
         uint256 startDate,
         uint256 endDate
-    );
+    ); // Update event
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Not the contract owner");
@@ -90,19 +88,23 @@ contract DocumentVerification {
         uint256 _startDate,
         uint256 _endDate
     ) external onlyOwner {
-        employeeTenures[_user][_companyName] = Employee({
-            companyName: _companyName,
-            startDate: _startDate,
-            endDate: _endDate
-        });
+        employeeTenures[_user].companyName = _companyName;
+        employeeTenures[_user].startDate = _startDate;
+        employeeTenures[_user].endDate = _endDate;
         emit EmployeeTenureSet(_user, _companyName, _startDate, _endDate);
     }
 
     function getEmployeeTenure(
-        address _user,
-        string memory _companyName
+        address _user
     ) external view returns (string memory, uint256, uint256) {
-        Employee memory employee = employeeTenures[_user][_companyName];
-        return (employee.companyName, employee.startDate, employee.endDate);
+        return (
+            employeeTenures[_user].companyName,
+            employeeTenures[_user].startDate,
+            employeeTenures[_user].endDate
+        );
+    }
+    function removeEmployeeTenure(address _user) external onlyOwner {
+        delete employeeTenures[_user];
+        emit EmployeeTenureSet(_user, "", 0, 0); // Emit event with empty values to signify removal
     }
 }

@@ -1,23 +1,5 @@
 export const ABI =[
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_user",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "_documentHash",
-				"type": "string"
-			}
-		],
-		"name": "addDocument",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
@@ -103,60 +85,14 @@ export const ABI =[
 				"internalType": "address",
 				"name": "_user",
 				"type": "address"
-			}
-		],
-		"name": "removeEmployeeTenure",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_user",
-				"type": "address"
 			},
 			{
 				"internalType": "string",
 				"name": "_documentHash",
 				"type": "string"
-			},
-			{
-				"internalType": "bool",
-				"name": "_isValid",
-				"type": "bool"
 			}
 		],
-		"name": "setDocumentValidity",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_user",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "_companyName",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_startDate",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_endDate",
-				"type": "uint256"
-			}
-		],
-		"name": "setEmployeeTenure",
+		"name": "addDocument",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -230,6 +166,70 @@ export const ABI =[
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "removeEmployeeTenure",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_documentHash",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "_isValid",
+				"type": "bool"
+			}
+		],
+		"name": "setDocumentValidity",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_companyName",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_startDate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_endDate",
+				"type": "uint256"
+			}
+		],
+		"name": "setEmployeeTenure",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
